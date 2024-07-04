@@ -17,7 +17,6 @@ class _RiderhomescreenState extends State<Riderhomescreen> {
     ['assets/images/suggestions/reserve.png', 'Reserve'],
     ['assets/images/suggestions/intercity.png', 'Intercity']
   ];
-
   List moreWaysToUber = [
     [
       'assets/images/moreWaysUber/premierTrips.png',
@@ -33,6 +32,30 @@ class _RiderhomescreenState extends State<Riderhomescreen> {
       'assets/images/moreWaysUber/sendAPackage.png',
       'Send a package',
       'On demand delivery across town',
+    ],
+  ];
+  List planYourNextTrip = [
+    [
+      'assets/images/planNextTrip/rentals.png',
+      'Rentals',
+      'Travel from 1 to 12 hours',
+    ],
+    [
+      'assets/images/planNextTrip/travelIntercity.png',
+      'Travel intercity',
+      'Get to remote locations with ease',
+    ],
+  ];
+  List saveEveryDay = [
+    [
+      'assets/images/saveEveryDay/tryAGroupTrip.png',
+      'Try A Group Trip',
+      'Seamless trips, together',
+    ],
+    [
+      'assets/images/saveEveryDay/uberMotoTrips.png',
+      'Uber Moto Trips',
+      'Affordable motorcycle pick-ups',
     ],
   ];
   @override
@@ -186,53 +209,114 @@ class _RiderhomescreenState extends State<Riderhomescreen> {
           SizedBox(
             height: 4.h,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'More ways to use Uber',
-                style: AppTextStyles.body14Bold,
-              ),
-              SizedBox(
-                height: 1.h,
-              ),
-              SizedBox(
-                height: 20.h,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: moreWaysToUber.length,
-                  itemBuilder: (context, index) {
-                    return Container(
-                      margin: EdgeInsets.only(
-                          left: index == 0 ? 0 : 1.5.w,
-                          right:
-                              index == (moreWaysToUber.length - 1) ? 0 : 1.5.w),
-                      height: 18.w,
-                      width: 65.w,
-                      child: Column(
-                        children: [
-                          Container(
-                            height: 15.w,
-                            width: 65.w,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.sp),
-                              image: DecorationImage(
-                                image: AssetImage(moreWaysToUber[index][0]),
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
-              )
-            ],
-          )
+          ExploreFeaturesHorizontalListView(
+            list: moreWaysToUber,
+            title: 'More ways to use Uber',
+          ),
+          SizedBox(
+            height: 4.h,
+          ),
+          ExploreFeaturesHorizontalListView(
+            list: planYourNextTrip,
+            title: 'Plan your next trip',
+          ),
+          SizedBox(
+            height: 4.h,
+          ),
+          ExploreFeaturesHorizontalListView(
+            list: saveEveryDay,
+            title: 'Save every day',
+          ),
+          SizedBox(
+            height: 2.h,
+          ),
         ],
       ),
+    );
+  }
+}
+
+class ExploreFeaturesHorizontalListView extends StatelessWidget {
+  const ExploreFeaturesHorizontalListView({
+    super.key,
+    required this.list,
+    required this.title,
+  });
+  final List list;
+  final String title;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: AppTextStyles.body14Bold,
+        ),
+        SizedBox(
+          height: 1.h,
+        ),
+        SizedBox(
+          height: 20.h,
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(),
+            scrollDirection: Axis.horizontal,
+            shrinkWrap: true,
+            itemCount: list.length,
+            itemBuilder: (context, index) {
+              return Container(
+                margin: EdgeInsets.only(
+                    left: index == 0 ? 0 : 1.5.w,
+                    right: index == (list.length - 1) ? 0 : 1.5.w),
+                height: 28.w,
+                width: 65.w,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 25.w,
+                      width: 65.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.sp),
+                        image: DecorationImage(
+                          image: AssetImage(list[index][0]),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                    ),
+                    const Spacer(),
+                    Row(
+                      children: [
+                        Text(
+                          list[index][1],
+                          style: AppTextStyles.small12Bold,
+                        ),
+                        SizedBox(
+                          width: 3.w,
+                        ),
+                        Icon(
+                          Icons.arrow_forward,
+                          size: 2.h,
+                          color: black87,
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 0.2.h,
+                    ),
+                    Text(
+                      list[index][2],
+                      style: AppTextStyles.small10.copyWith(
+                        color: black87,
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        )
+      ],
     );
   }
 }

@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rider_uber/rider/controller/bottomNavBarRaiderProvider/bottomNavBarRaiderProvider.dart';
+import 'package:rider_uber/rider/view/account/accountScreenRaider.dart';
+import 'package:rider_uber/rider/view/activity/activityScreen.dart';
+import 'package:rider_uber/rider/view/bottomNavBar/bottomNavBarRaider.dart';
 import 'package:rider_uber/rider/view/homeScreen/riderHomeScreen.dart';
+import 'package:rider_uber/rider/view/serviceScreen/serviceScreen.dart';
 import 'package:sizer/sizer.dart';
 
 import 'constant/utils/colors.dart';
@@ -19,10 +25,18 @@ class _UberState extends State<Uber> {
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, _, __) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(appBarTheme: AppBarTheme(color: white, elevation: 0)),
-        home: const Riderhomescreen(),
+      return MultiProvider(
+        providers: [
+          ChangeNotifierProvider<Bottomnavbarraiderprovider>(
+            create: (_) => Bottomnavbarraiderprovider(),
+          )
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme:
+              ThemeData(appBarTheme: AppBarTheme(color: white, elevation: 0)),
+          home: const Bottomnavbarraider(),
+        ),
       );
     });
   }
