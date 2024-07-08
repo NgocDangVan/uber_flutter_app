@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rider_uber/common/view/registrationScreen/registrationScreen.dart';
 import 'package:rider_uber/rider/controller/bottomNavBarRaiderProvider/bottomNavBarRaiderProvider.dart';
 import 'package:rider_uber/rider/view/account/accountScreenRaider.dart';
 import 'package:rider_uber/rider/view/activity/activityScreen.dart';
+import 'package:rider_uber/rider/view/authScreen/loginScreen.dart';
+import 'package:rider_uber/rider/view/authScreen/otpScreen.dart';
 import 'package:rider_uber/rider/view/bottomNavBar/bottomNavBarRaider.dart';
 import 'package:rider_uber/rider/view/homeScreen/riderHomeScreen.dart';
 import 'package:rider_uber/rider/view/serviceScreen/serviceScreen.dart';
@@ -35,7 +38,7 @@ class _UberState extends State<Uber> {
           debugShowCheckedModeBanner: false,
           theme:
               ThemeData(appBarTheme: AppBarTheme(color: white, elevation: 0)),
-          home: const Bottomnavbarraider(),
+          home: const Registrationscreen(),
         ),
       );
     });
