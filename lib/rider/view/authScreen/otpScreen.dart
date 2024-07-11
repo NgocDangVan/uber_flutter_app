@@ -9,6 +9,7 @@ import 'package:rider_uber/constant/utils/textStyles.dart';
 import 'package:sizer/sizer.dart';
 
 import '../../../common/controller/authProvider.dart';
+import '../../../common/controller/services/mobileAuthServices.dart';
 
 class Otpscreen extends StatefulWidget {
   const Otpscreen({super.key});
@@ -136,7 +137,12 @@ class _OtpscreenState extends State<Otpscreen> {
               enableActiveFill: true,
               errorAnimationController: errorController,
               controller: otpController,
-              onCompleted: (value) {},
+              onCompleted: (value) {
+                Mobileauthservices.verifyOTP(
+                  context: context,
+                  otp: otpController.text.trim(),
+                );
+              },
               onChanged: (value) {},
               beforeTextPaste: (text) {
                 return true;

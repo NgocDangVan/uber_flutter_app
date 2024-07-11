@@ -1,5 +1,8 @@
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rider_uber/common/controller/authProvider.dart';
+import 'package:rider_uber/common/controller/services/mobileAuthServices.dart';
 import 'package:rider_uber/common/widgets/onDivider.dart';
 import 'package:rider_uber/constant/commonWidgets/elevatedButton.dart';
 import 'package:rider_uber/constant/utils/colors.dart';
@@ -25,6 +28,22 @@ class _LoginscreenState extends State<Loginscreen> {
     [const Assetgen().facebook.svg(height: 3.h), 'Facebook'],
     [const Assetgen().mail.svg(height: 3.h), 'Mail'],
   ];
+
+  login() {
+    if (mobileNumberController.text.isNotEmpty) {
+      setState(() {
+        loginButtonPressed = true;
+      });
+      context
+          .read<Authprovider>()
+          .updateMobileNumber(mobileNumberController.text.trim());
+      Mobileauthservices.receiveOTP(
+          context: context,
+          mobileNumber:
+              '$selectedCountryCode${mobileNumberController.text.trim()}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -118,7 +137,9 @@ class _LoginscreenState extends State<Loginscreen> {
             height: 2.h,
           ),
           ElevatedButtonCommon(
-            onPressed: () {},
+            onPressed: () {
+              login();
+            },
             backgroundColor: black,
             height: 6.h,
             width: 94.w,
