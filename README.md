@@ -7,6 +7,9 @@ Thư viện sử dụng trong dự án:
     - image_picker: Pick image từ Galery
     - flutter_styled_toast: Tạo Toast để thông báo
     - uuid: Sinh mã
+    - geolocator: Theo dõi vị trí hiện tại của người dùng
+    - google_maps_flutter: Công cụ bản đồ
+    - http: Thao tác với API
 
 Yêu cầu môi trường lập trình:
     - Firebase Tool: npm install -g firebase-tools --> firebase login --interactive
