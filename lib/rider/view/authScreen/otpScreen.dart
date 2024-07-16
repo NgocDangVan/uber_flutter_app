@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:provider/provider.dart';
+import 'package:rider_uber/common/view/registrationScreen/registrationScreen.dart';
 import 'package:rider_uber/constant/commonWidgets/elevatedButton.dart';
 import 'package:rider_uber/constant/utils/colors.dart';
 import 'package:rider_uber/constant/utils/textStyles.dart';
@@ -69,7 +71,15 @@ class _OtpscreenState extends State<Otpscreen> {
                 ),
               ),
               ElevatedButtonCommon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      PageTransition(
+                        child: const Registrationscreen(),
+                        type: PageTransitionType.rightToLeft,
+                      ),
+                    );
+                  },
                   backgroundColor: white,
                   borderRadius: 50.sp,
                   height: 6.h,

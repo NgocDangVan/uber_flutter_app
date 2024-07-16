@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rider_uber/common/view/registrationScreen/registrationScreen.dart';
+import 'package:rider_uber/common/view/signInLogic/signInLogin.dart';
 import 'package:rider_uber/firebase_options.dart';
 import 'package:rider_uber/rider/controller/bottomNavBarRaiderProvider/bottomNavBarRaiderProvider.dart';
 import 'package:rider_uber/rider/view/account/accountScreenRaider.dart';
@@ -49,7 +50,7 @@ class _UberState extends State<Uber> {
           debugShowCheckedModeBanner: false,
           theme:
               ThemeData(appBarTheme: AppBarTheme(color: white, elevation: 0)),
-          home: const Loginscreen(),
+          home: const Signinlogin(),
         ),
       );
     });
